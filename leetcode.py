@@ -1,5 +1,26 @@
 from typing import *
 
+class ListNode:
+    def __init__(self, val=0, next=None, _list = []):
+        self.val = val
+        self.next = next
+
+    def __repr__(self):
+        return "val: %r" % (self.__dict__)
+
+def list_to_listNode(list1):
+
+    head = ListNode(list1[0])
+    tail = head
+    i = 1
+
+    while i < len(list1):
+        tail.next = ListNode(list1[i]) 
+        tail = tail.next
+        i += 1
+    return head
+    
+
 class Solution:
     def containsDuplicate(self, nums:List[int]) -> bool:
         return len(set(nums)) != len(nums)
@@ -92,13 +113,27 @@ class Solution:
                     return False
         return stack == []
 
+    def reverseList(self, head: Optional[ListNode]) -> Optional[ListNode]:
+        """ This function reverses a linked list
+            What could we do? We could use recursion with the lowest note returning 
+            val next. We could also use two pointers to reverse the list
+        """
+        curr = head
+        prev = None
+
+        while curr:
+            tail = curr.next
+            curr.next = prev
+            prev = curr
+            curr = tail
+        return prev
+
 if __name__ == "__main__":
     s = Solution()
 
     assert s.containsDuplicate([1,2,3,1]) == True
     assert s.containsDuplicate([1,2,3,4]) == False
-    print(s.twoSum([2,7,11,15], 9))
-    print(s.twoSum2([2,7,11,15], 9))
     assert s.twoSum([2,7,11,15], 9) == (0,1)
     assert s.maxProfit1([7,1,5,3,6,4]) == 5
     assert s.isValid("()") == True  
+    s.reverseList(list_to_listNode([1,2,3,4,5])) 
