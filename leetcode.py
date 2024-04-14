@@ -1,4 +1,4 @@
-from typing import *
+from typing import List, Optional
 
 class ListNode:
     def __init__(self, val=0, next=None, _list = []):
@@ -128,6 +128,47 @@ class Solution:
             curr = tail
         return prev
 
+
+    def numSubarrayProductLessThanK(self, nums: List[int], k: int) -> int:
+        if k <= 1:
+            return 0
+        
+        ans, left = 0,0
+
+        curr =1
+
+        for right in range(len(nums)):
+            curr *= nums[right]
+
+            while curr >= k:
+                curr /= nums[left]
+                left += 1
+
+            ans += right - left +1
+        return ans
+    
+    def findmmaxAverage(self, nums: List[int], k: int) -> float:
+        """ find a contigous subarray whose length is equal to k with the maximum average 
+        value and return this value"""
+
+        left, right = 0, k-1
+
+        curr_sum = sum(nums[left:right+1])
+        temp_sum = curr_sum
+
+        while right < len(nums)-1:
+
+            right += 1
+            left += 1
+            temp_sum = temp_sum + nums[right] - nums[left-1]
+
+            if temp_sum > curr_sum:
+                curr_sum = temp_sum
+
+        return curr_sum/k
+
+
+
 if __name__ == "__main__":
     s = Solution()
 
@@ -136,4 +177,7 @@ if __name__ == "__main__":
     assert s.twoSum([2,7,11,15], 9) == (0,1)
     assert s.maxProfit1([7,1,5,3,6,4]) == 5
     assert s.isValid("()") == True  
-    s.reverseList(list_to_listNode([1,2,3,4,5])) 
+    assert s.numSubarrayProductLessThanK([10,5,2,6], 100) == 8
+    assert s.numSubarrayProductLessThanK([1,2,3], 0) == 0
+    assert s.findmmaxAverage([1,12,-5,-6,50,3], 4) == 12.75
+    assert s.findmmaxAverage([0,4,0,3,2], 1) == 5.0
