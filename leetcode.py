@@ -147,7 +147,7 @@ class Solution:
             ans += right - left +1
         return ans
     
-    def findmmaxAverage(self, nums: List[int], k: int) -> float:
+    def findmaxAverage(self, nums: List[int], k: int) -> float:
         """ find a contigous subarray whose length is equal to k with the maximum average 
         value and return this value"""
 
@@ -167,6 +167,42 @@ class Solution:
 
         return curr_sum/k
 
+    def findMaxConsecutiveOnesI(self, nums: List[int]) -> int:   
+
+        #Notes on this one, update your temp variables before you check if the current vlaue is bigger than the max value
+        # Or at least have a think about it while you are writing it out loud.
+
+
+        l, r = 0, 0
+        max = 0
+        curr = 0
+
+        while r < len(nums):
+            if nums[r] == 0:
+                
+                r +=1
+                l = r
+                curr = 0
+                #Gotta continue here because we don't want to updtae the max value
+                # if we have a zero in the array
+                continue
+
+            curr += 1
+            r += 1
+            if curr >max:
+                max = curr
+
+        return max
+              
+    def findMaxConsecutiveOnesIII(self, nums: List[int], k: int) -> int:
+
+        left, right = 0, 0
+
+        max = 0
+        pass
+
+
+
 
 
 if __name__ == "__main__":
@@ -179,5 +215,7 @@ if __name__ == "__main__":
     assert s.isValid("()") == True  
     assert s.numSubarrayProductLessThanK([10,5,2,6], 100) == 8
     assert s.numSubarrayProductLessThanK([1,2,3], 0) == 0
-    assert s.findmmaxAverage([1,12,-5,-6,50,3], 4) == 12.75
-    assert s.findmmaxAverage([0,4,0,3,2], 1) == 5.0
+    assert s.findmaxAverage([1,12,-5,-6,50,3], 4) == 12.75
+    assert s.findmaxAverage([0,4,0,3,2], 1) == 4.0
+    assert s.findMaxConsecutiveOnesI([1,1,0,1,1,1]) == 3
+
