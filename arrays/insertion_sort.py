@@ -1,7 +1,7 @@
-from typing import list, Any
+from typing import List, Any
 
 
-def insertion_sort(A: list[Any]) -> list[Any]:
+def insertion_sort(A: List[Any]) -> list[Any]:
     """ Pseudo
     Sort a list of comparable elements into non decreasing order
     
@@ -9,7 +9,7 @@ def insertion_sort(A: list[Any]) -> list[Any]:
         insert A[k] at it's proper location in A
     """
 
-    for k in range(len(A)-1):
+    for k in range(len(A)):
         # we keep track of current so we can put it in the right spot
         # at the end of the iteration when we've found it's position
         current = A[k]
@@ -21,6 +21,9 @@ def insertion_sort(A: list[Any]) -> list[Any]:
             A[j] = A[j-1]
             j -=1
         A[j] = current
+    
+    return A
 
 if __name__ == '__main__':
+    print(insertion_sort([3,2,1]))
     assert insertion_sort([3,2,1]) == [1,2,3]
