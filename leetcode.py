@@ -169,10 +169,6 @@ class Solution:
 
     def findMaxConsecutiveOnesI(self, nums: List[int]) -> int:   
 
-        #Notes on this one, update your temp variables before you check if the current vlaue is bigger than the max value
-        # Or at least have a think about it while you are writing it out loud.
-
-
         l, r = 0, 0
         max = 0
         l = 0
@@ -183,8 +179,6 @@ class Solution:
                 r +=1
                 l = r
 
-                #Gotta continue here because we don't want to updtae the max value
-                # if we have a zero in the array
                 continue
 
             r += 1
@@ -195,27 +189,16 @@ class Solution:
         return max
               
     def findMaxConsecutiveOnesIII(self, nums: List[int], k: int) -> int:
-
-        #this is O(n) time complexity and O(1) space complexity
-
+        
         left = 0
 
         for right in range(len(nums)):
 
-            # subtract 0 if nums[right]
+
             k -= 1 -nums[right]
 
-            # we have set our right most pointer to the end of the array
-            # now we need to focus on the left pointer
-            # if we have have a negative value for k we need to move the left pointer
-            # we don't even need to move out left pointer leftwards beecause it's starting 
-            # at the leftmost position.
-            # moving the right pointer toward the right will naturally decrease k
-
             if k < 0:
-                # We add the value of the left pointer to k. notice we flipt the binary value
                 k+= 1 - nums[left]
-                #after we've updated k we move the left pointer.
                 left += 1
 
         return (right - left + 1)
@@ -236,4 +219,5 @@ if __name__ == "__main__":
     assert s.findmaxAverage([0,4,0,3,2], 1) == 4.0
     assert s.findMaxConsecutiveOnesI([1,1,0,1,1,1]) == 3
     assert s.findMaxConsecutiveOnesIII([1,1,1,0,0,0,1,1,1,1,0], 2) == 6
+    assert s.findMaxConsecutiveOnesIII([0,0,1,1,0,0,1,1,1,0,1,1,0,0,0,1,1,1,1], 3) ==10
 
