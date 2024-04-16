@@ -62,17 +62,7 @@ class Solution:
         return True 
 
 
-
     def maxProfit1(self, prices: List[int]) -> int:
-        # Leetcode 121
-        """ This function is supposed to take a list of prices and return the maximum profit that can be made from buying and selling the stock.
-        This is a two pointer solution that's kinda fun we start by looking at the first two prices of the list and we move the beginning to the second pointer if the second pointer is less than the first pointer then we found a new local minumum.
-
-        We then replace pointer 1 with pointer two position.
-        If this is not the case we check whether the difference between the values at the two pointer locations is greater than our max. If this is the case, we replace our max with a new maximum. 
-
-        The last condition we just move our pointer to the right.
-        """
             
         left = 0
         right = 1
@@ -229,11 +219,25 @@ class Solution:
         
         else:
             return 1- min_
-    
+        
+    def getAverages(self, nums: List[int], k: int) -> List[int]:
+        prefix = [nums[0]]
+        avg = []
+
+        for i in range(1, len(nums)):
+            prefix.append(nums[i]+prefix[i-1])
+            
+        for i in range(len(prefix)):
+            if i+k > len(prefix)-1 or i-k < 0:
+                avg.append(-1)
+                
+            else:
+                avg.append((prefix[i+k]-prefix[i-k]+nums[i-k])//(2*k+1))
+        
+        return avg
 
 if __name__ == "__main__":
     s = Solution()
-
 
     assert s.containsDuplicate([1,2,3,1]) == True
     assert s.containsDuplicate([1,2,3,4]) == False
