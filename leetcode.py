@@ -45,6 +45,7 @@ class Solution:
             d[n] = i
 
     def isPalindrome(self, s:str) -> bool:
+        # Leetcode 125
         """ This function checks a string to see if it is a palindrome.
         it also ignores alpha-numeric characters and case. it uses a two pointer solution"""
         """ is there a function that uses chars?"""
@@ -63,6 +64,7 @@ class Solution:
 
 
     def maxProfit1(self, prices: List[int]) -> int:
+        # Leetcode 121
         """ This function is supposed to take a list of prices and return the maximum profit that can be made from buying and selling the stock.
         This is a two pointer solution that's kinda fun we start by looking at the first two prices of the list and we move the beginning to the second pointer if the second pointer is less than the first pointer then we found a new local minumum.
 
@@ -89,6 +91,7 @@ class Solution:
         return max 
             
     def isValid(self, s: str) -> bool:
+        # Leetcode 20
         """ This function checks for valid parentheses """
 
         left = '[{('
@@ -114,6 +117,8 @@ class Solution:
         return stack == []
 
     def reverseList(self, head: Optional[ListNode]) -> Optional[ListNode]:
+        # Leetcode 206
+        
         """ This function reverses a linked list
             What could we do? We could use recursion with the lowest note returning 
             val next. We could also use two pointers to reverse the list
@@ -130,6 +135,7 @@ class Solution:
 
 
     def numSubarrayProductLessThanK(self, nums: List[int], k: int) -> int:
+        # leetcode 713
         if k <= 1:
             return 0
         
@@ -148,6 +154,7 @@ class Solution:
         return ans
     
     def findmaxAverage(self, nums: List[int], k: int) -> float:
+        # Leetcode 643
         """ find a contigous subarray whose length is equal to k with the maximum average 
         value and return this value"""
 
@@ -168,7 +175,7 @@ class Solution:
         return curr_sum/k
 
     def findMaxConsecutiveOnesI(self, nums: List[int]) -> int:   
-
+        # Leetcode 485
         l, r = 0, 0
         max = 0
         l = 0
@@ -189,7 +196,7 @@ class Solution:
         return max
               
     def findMaxConsecutiveOnesIII(self, nums: List[int], k: int) -> int:
-        
+        # Leetcode 1004
         left = 0
 
         for right in range(len(nums)):
@@ -203,10 +210,30 @@ class Solution:
 
         return (right - left + 1)
     
-            
+    def runningSum(self, nums: List[int]) -> List[int]:
+
+        for i in range(1, len(nums)):
+            nums[i] += nums[i-1]
+        return nums
+
+    def minStartValue(self, nums: List[int]) -> int:
+    
+        prefix = nums[0]
+        min_ = prefix
+        for i in range(1, len(nums)):
+            prefix += nums[i]
+            min_ = min(min_, prefix)
+        
+        if min_>= 1:
+            return 1
+        
+        else:
+            return 1- min_
+    
 
 if __name__ == "__main__":
     s = Solution()
+
 
     assert s.containsDuplicate([1,2,3,1]) == True
     assert s.containsDuplicate([1,2,3,4]) == False
@@ -220,4 +247,5 @@ if __name__ == "__main__":
     assert s.findMaxConsecutiveOnesI([1,1,0,1,1,1]) == 3
     assert s.findMaxConsecutiveOnesIII([1,1,1,0,0,0,1,1,1,1,0], 2) == 6
     assert s.findMaxConsecutiveOnesIII([0,0,1,1,0,0,1,1,1,0,1,1,0,0,0,1,1,1,1], 3) ==10
-
+    assert s.runningSum([1,2,3,4]) == [1,3,6,10]
+    assert s.minStartValue([-3,2,-3,4,2]) == 5
