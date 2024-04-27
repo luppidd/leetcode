@@ -248,7 +248,11 @@ class Solution:
     
     def repeatedCharacter2(self, s:str) -> str:
         """ Leetcode 2351, This returns the first character to apper
-        twice using a dict"""
+        twice using a dict, space complexity is equal to O(m) which is 
+        the allowable number of characters in s. It can also be argued that the solution 
+        runs in O(1) cause it's bounded by 26, the number of allowable characters in the
+        english alphabet"""
+
 
         d = {}
         for i in range(len(s)):
@@ -256,3 +260,11 @@ class Solution:
             if c in d:
                 return c
             d[c] = i
+
+    def checkIfPangram(self, sentence: str) -> bool:
+        """ Leetcode 1832. Check if pangram, solved using a set. This solution is O(n) but space complexity is O(1)"""
+
+        set_sentence= set(sentence)
+        if len(set_sentence) == 26:
+            return True
+        return False
