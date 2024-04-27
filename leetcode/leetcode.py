@@ -235,3 +235,24 @@ class Solution:
                 avg.append((prefix[i+k]-prefix[i-k]+nums[i-k])//(2*k+1))
         
         return avg
+
+    def repeatedCharacter(self, s:str) -> str:
+        """ Leetcode 2351, This returns the first character to apper
+        twice using brute force"""
+
+        for i in range(len(s)):
+            c = s[i]
+            for j in range(i):
+                if s[j] == c:
+                    return c
+    
+    def repeatedCharacter2(self, s:str) -> str:
+        """ Leetcode 2351, This returns the first character to apper
+        twice using a dict"""
+
+        d = {}
+        for i in range(len(s)):
+            c = s[i]
+            if c in d:
+                return c
+            d[c] = i
