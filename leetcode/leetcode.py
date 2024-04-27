@@ -276,3 +276,15 @@ class Solution:
         for i in range(len(nums)+1):
             if i not in hashset:
                 return i
+            
+    def countElements(self, arr: List[int]) -> int:
+        """ Given an array count the number of elements x such that x+1 is also in the array"""
+    
+        hashset = set(arr)
+        counter = 0
+        for i in range(len(arr)):
+            num = arr[i]
+            if num+1 in hashset:
+                counter +=1
+        
+        return counter

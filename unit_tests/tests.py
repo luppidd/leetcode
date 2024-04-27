@@ -25,3 +25,9 @@ class SolutionTestCase(unittest.TestCase):
             self.solution.numSubarrayProductLessThanK([10,5,2,6], 100)
             , 8
         )
+
+    def test_countElements(self):
+        self.assertEqual(
+            self.solution.countElements([1,1,2,2])
+            , 2
+        )
