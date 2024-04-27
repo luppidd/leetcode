@@ -235,21 +235,3 @@ class Solution:
                 avg.append((prefix[i+k]-prefix[i-k]+nums[i-k])//(2*k+1))
         
         return avg
-
-if __name__ == "__main__":
-    s = Solution()
-
-    assert s.containsDuplicate([1,2,3,1]) == True
-    assert s.containsDuplicate([1,2,3,4]) == False
-    assert s.twoSum([2,7,11,15], 9) == (0,1)
-    assert s.maxProfit1([7,1,5,3,6,4]) == 5
-    assert s.isValid("()") == True  
-    assert s.numSubarrayProductLessThanK([10,5,2,6], 100) == 8
-    assert s.numSubarrayProductLessThanK([1,2,3], 0) == 0
-    assert s.findmaxAverage([1,12,-5,-6,50,3], 4) == 12.75
-    assert s.findmaxAverage([0,4,0,3,2], 1) == 4.0
-    assert s.findMaxConsecutiveOnesI([1,1,0,1,1,1]) == 3
-    assert s.findMaxConsecutiveOnesIII([1,1,1,0,0,0,1,1,1,1,0], 2) == 6
-    assert s.findMaxConsecutiveOnesIII([0,0,1,1,0,0,1,1,1,0,1,1,0,0,0,1,1,1,1], 3) ==10
-    assert s.runningSum([1,2,3,4]) == [1,3,6,10]
-    assert s.minStartValue([-3,2,-3,4,2]) == 5
