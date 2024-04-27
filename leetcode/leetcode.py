@@ -268,3 +268,11 @@ class Solution:
         if len(set_sentence) == 26:
             return True
         return False
+    
+    def missingNumber(self, nums: List[int]) -> int:
+        """Find the missing number in the range [0,n] using O(n) time O(1) space"""
+        hashset = set(nums)
+
+        for i in range(len(nums)+1):
+            if i not in hashset:
+                return i
